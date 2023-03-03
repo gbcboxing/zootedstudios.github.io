@@ -14,8 +14,8 @@ var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
 var Ball = {
 	new: function (incrementedSpeed) {
 		return {
-			width: 64,
-			height: 64,
+			width: 128,
+			height: 128,
 			x: (this.canvas.width / 2) - 9,
 			y: (this.canvas.height / 2) - 9,
 			moveX: DIRECTION.IDLE,
@@ -259,16 +259,10 @@ var Game = {
 
 		// Draw the Ball
 		if (Pong._turnDelayIsOver.call(this)) {
-			this.context.fillRect(
-				this.ball.x,
-				this.ball.y,
-				this.ball.width,
-				this.ball.height
-			);
             this.context.drawImage(
                 this.weedLeaf,
-                this.ball.x,
-				this.ball.y,
+                this.ball.x - 54,
+				this.ball.y - 54,
 				this.ball.width,
 				this.ball.height);
 		}

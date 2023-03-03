@@ -63,7 +63,7 @@ var Game = {
         
         this.weedLeaf = document.getElementById("weedLeaf");
 
-        this.reggae = document.getElementById("reggae");
+        reggae = document.getElementById("reggae" + Math.floor(Math.random() * 3));
 
 		Pong.menu();
 		Pong.listen();

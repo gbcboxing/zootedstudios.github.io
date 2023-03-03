@@ -62,6 +62,7 @@ var Game = {
 		this.color = '#2c3e50';
         
         this.weedLeaf = document.getElementById("weedLeaf");
+        spliff = document.getElementById("spliff");
 
 		Pong.startMenu();
 		Pong.listen();
@@ -435,15 +436,17 @@ var Game = {
 		this.context.fillStyle = '#ffffff';
 
 		// Draw the Player
-		this.context.fillRect(
+		this.context.drawImage(
+            spliff,
 			this.player.x,
 			this.player.y,
 			this.player.width,
 			this.player.height
 		);
 
-		// Draw the Paddle
-		this.context.fillRect(
+		// Draw the Enemy Paddle
+		this.context.drawImage(
+            spliff,
 			this.paddle.x,
 			this.paddle.y,
 			this.paddle.width,

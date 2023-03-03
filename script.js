@@ -14,8 +14,8 @@ var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
 var Ball = {
 	new: function (incrementedSpeed) {
 		return {
-			width: 18,
-			height: 18,
+			width: 64,
+			height: 64,
 			x: (this.canvas.width / 2) - 9,
 			y: (this.canvas.height / 2) - 9,
 			moveX: DIRECTION.IDLE,
@@ -60,6 +60,8 @@ var Game = {
 		this.turn = this.paddle;
 		this.timer = this.round = 0;
 		this.color = '#2c3e50';
+        
+        this.weedLeaf = document.getElementById("weedLeaf");
 
 		Pong.menu();
 		Pong.listen();
@@ -261,6 +263,12 @@ var Game = {
 				this.ball.width,
 				this.ball.height
 			);
+            this.context.drawImage(
+                this.weedLeaf,
+                this.ball.x,
+				this.ball.y,
+				this.ball.width,
+				this.ball.height);
 		}
 
 		// Draw the net (Line in the middle)

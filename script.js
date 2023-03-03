@@ -377,7 +377,7 @@ var Game = {
 			// there are not.
 			if (!rounds[this.round + 1]) {
 				this.over = true;
-				setTimeout(function () { Pong.endGameMenu('Winner!'); }, 1000);
+				setTimeout(function () { Pong.endGameMenu('You win the golden bong!!!'); }, 1000);
 			} else {
 				// If there is another round, reset all the values and increment the round number.
 				this.color = this._generateRoundColor();
@@ -406,7 +406,7 @@ var Game = {
 		// Check to see if the paddle/AI has won the round.
 		else if (this.paddle.score === rounds[this.round]) {
 			this.over = true;
-			setTimeout(function () { Pong.endGameMenu('Game Over!'); }, 1000);
+			setTimeout(function () { Pong.endGameMenu('Game Over! You are shit at smoking weed!'); }, 1000);
 		}
 	},
 

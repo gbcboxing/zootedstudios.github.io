@@ -7,8 +7,7 @@ var DIRECTION = {
 	RIGHT: 4
 };
 
-// var rounds = [5, 10, 20, 69, 420];
-var rounds = [1, 1, 1, 1, 1];
+var rounds = [5, 10, 20, 69, 420];
 var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
 
 // The ball object (The cube that bounces back and forth)

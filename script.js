@@ -63,7 +63,9 @@ var Game = {
         
         this.weedLeaf = document.getElementById("weedLeaf");
 
-        reggae = document.getElementById("reggae" + Math.floor(Math.random() * 3));
+        reggae = document.getElementById("badgerReggae");
+
+        background = document.getElementById("badger");
 
 		Pong.menu();
 		Pong.listen();
@@ -107,19 +109,27 @@ var Game = {
 
 		// Draw the rectangle behind the 'Press any key to begin' text.
 		this.context.fillRect(
-			this.canvas.width / 2 - 350,
-			this.canvas.height / 2 - 48,
-			700,
-			100
+			this.canvas.width / 2 - 600,
+			this.canvas.height / 2 - 150,
+			1200,
+			300
 		);
 
 		// Change the canvas color;
 		this.context.fillStyle = '#ffffff';
 
 		// Draw the 'press any key to begin' text
-		this.context.fillText('Press any key to begin',
+		this.context.fillText('Badger challenges you to a weed off',
+            this.canvas.width / 2,
+            this.canvas.height / 2 - 36
+        );
+		this.context.fillText('You have to get 5 points to defeat him',
 			this.canvas.width / 2,
-			this.canvas.height / 2 + 15
+			this.canvas.height / 2
+		);
+		this.context.fillText('(with weed) Press any key to begin',
+			this.canvas.width / 2,
+			this.canvas.height / 2 + 36
 		);
 	},
 
@@ -231,7 +241,8 @@ var Game = {
 		this.context.fillStyle = this.color;
 
 		// Draw the background
-		this.context.fillRect(
+		this.context.drawImage(
+            background,
 			0,
 			0,
 			this.canvas.width,

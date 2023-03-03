@@ -218,8 +218,50 @@ var Game = {
 
         Pong.running = false;
 	},
-
+    
 	level4Menu: function () {
+        reggae.pause();
+        reggae.currentTime = 0;
+        reggae = document.getElementById("bobReggae");
+        reggae.play();
+        background = document.getElementById("bob");
+        
+		// Draw all the Pong objects in their current state
+		Pong.draw();
+
+		// Change the canvas font size and color
+		this.context.font = '50px Courier New';
+		this.context.fillStyle = this.color;
+
+		// Draw the rectangle behind the 'Press any key to begin' text.
+		this.context.fillRect(
+			this.canvas.width / 2 - 600,
+			this.canvas.height / 2 - 150,
+			1200,
+			300
+		);
+
+		// Change the canvas color;
+		this.context.fillStyle = '#ffffff';
+
+		// Draw the 'press any key to begin' text
+		this.context.fillText('Dude weed lmao',
+            this.canvas.width / 2,
+            this.canvas.height / 2 - 36
+        );
+		this.context.fillText('lol I forgot what I was saying',
+			this.canvas.width / 2,
+			this.canvas.height / 2
+		);
+		this.context.fillText('becasue I am high on weed (with weed)',
+			this.canvas.width / 2,
+			this.canvas.height / 2 + 36
+		);
+
+        Pong.running = false;
+	},
+
+	level5Menu: function () {
         reggae.pause();
         reggae.currentTime = 0;
         reggae = document.getElementById("snoopReggae");

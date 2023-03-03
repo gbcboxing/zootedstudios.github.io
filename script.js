@@ -7,7 +7,8 @@ var DIRECTION = {
 	RIGHT: 4
 };
 
-var rounds = [1, 10, 20, 69, 420];
+// var rounds = [5, 10, 20, 69, 420];
+var rounds = [1, 1, 1, 1, 1];
 var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
 
 // The ball object (The cube that bounces back and forth)
@@ -130,6 +131,8 @@ var Game = {
 			this.canvas.width / 2,
 			this.canvas.height / 2 + 50
 		);
+
+        Pong.running = false;
 	},
     
 	level2Menu: function () {
@@ -158,11 +161,95 @@ var Game = {
 		this.context.fillStyle = '#ffffff';
 
 		// Draw the 'press any key to begin' text
-		this.context.fillText('Spongebob challenges you to a weed off',
+		this.context.fillText('You have defeated badger (with weed)',
             this.canvas.width / 2,
             this.canvas.height / 2 - 36
         );
-		this.context.fillText('You have to get 5 points to defeat him',
+		this.context.fillText('But now I, Spongebob, will defeat you',
+			this.canvas.width / 2,
+			this.canvas.height / 2
+		);
+		this.context.fillText('(with weed) Press any key to begin',
+			this.canvas.width / 2,
+			this.canvas.height / 2 + 36
+		);
+
+        Pong.running = false;
+	},
+
+	level3Menu: function () {
+        reggae.pause();
+        reggae.currentTime = 0;
+        reggae = document.getElementById("shaggyReggae");
+        reggae.play();
+        background = document.getElementById("shaggy");
+        
+		// Draw all the Pong objects in their current state
+		Pong.draw();
+
+		// Change the canvas font size and color
+		this.context.font = '50px Courier New';
+		this.context.fillStyle = this.color;
+
+		// Draw the rectangle behind the 'Press any key to begin' text.
+		this.context.fillRect(
+			this.canvas.width / 2 - 600,
+			this.canvas.height / 2 - 150,
+			1200,
+			300
+		);
+
+		// Change the canvas color;
+		this.context.fillStyle = '#ffffff';
+
+		// Draw the 'press any key to begin' text
+		this.context.fillText('Like zoinks dude! You\'re an experienced',
+            this.canvas.width / 2,
+            this.canvas.height / 2 - 36
+        );
+		this.context.fillText('weed smoker! However, I will out weed you!',
+			this.canvas.width / 2,
+			this.canvas.height / 2
+		);
+		this.context.fillText('(with weed) Press any key to begin',
+			this.canvas.width / 2,
+			this.canvas.height / 2 + 36
+		);
+
+        Pong.running = false;
+	},
+
+	level4Menu: function () {
+        reggae.pause();
+        reggae.currentTime = 0;
+        reggae = document.getElementById("snoopReggae");
+        reggae.play();
+        background = document.getElementById("snoop");
+        
+		// Draw all the Pong objects in their current state
+		Pong.draw();
+
+		// Change the canvas font size and color
+		this.context.font = '50px Courier New';
+		this.context.fillStyle = this.color;
+
+		// Draw the rectangle behind the 'Press any key to begin' text.
+		this.context.fillRect(
+			this.canvas.width / 2 - 600,
+			this.canvas.height / 2 - 150,
+			1200,
+			300
+		);
+
+		// Change the canvas color;
+		this.context.fillStyle = '#ffffff';
+
+		// Draw the 'press any key to begin' text
+		this.context.fillText('Bruh',
+            this.canvas.width / 2,
+            this.canvas.height / 2 - 36
+        );
+		this.context.fillText('',
 			this.canvas.width / 2,
 			this.canvas.height / 2
 		);
@@ -258,7 +345,18 @@ var Game = {
 				this.ball.speed += 1;
 				this.round += 1;
 
-                this.level2Menu();
+                if (this.round == 1) {
+                    this.level2Menu();
+                }
+                else if (this.round == 2) {
+                    this.level3Menu();
+                }
+                else if (this.round == 3) {
+                    this.level4Menu();
+                }
+                else if (this.round == 4) {
+                    this.level5Menu();
+                }
 
 				// beep3.play();
 			}
@@ -351,7 +449,7 @@ var Game = {
 		// Change the font size for the center score text
 		this.context.font = '30px Courier New';
 
-		// Draw the winning score (center)
+		// Draw the current round number
 		this.context.fillText(
 			'Round ' + (Pong.round + 1),
 			(this.canvas.width / 2),
@@ -361,7 +459,7 @@ var Game = {
 		// Change the font size for the center score value
 		this.context.font = '40px Courier';
 
-		// Draw the current round number
+		// Draw the winning score (center)
 		this.context.fillText(
 			rounds[Pong.round] ? rounds[Pong.round] : rounds[Pong.round - 1],
 			(this.canvas.width / 2),
@@ -370,12 +468,16 @@ var Game = {
 	},
 
 	loop: function () {
-		Pong.update();
-		Pong.draw();
-
-		// If the game is not over, draw the next frame.
-		if (!Pong.over) requestAnimationFrame(Pong.loop);
-	},
+        if (Pong.running) {
+            Pong.update();
+            if (Pong.running) {
+                Pong.draw();
+                
+                // If the game is not over, draw the next frame.
+                if (!Pong.over) requestAnimationFrame(Pong.loop);
+            }
+        }
+    },
 
 	listen: function () {
 		document.addEventListener('keydown', function (key) {

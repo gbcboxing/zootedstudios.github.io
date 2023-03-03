@@ -7,7 +7,7 @@ var DIRECTION = {
 	RIGHT: 4
 };
 
-var rounds = [5, 5, 3, 3, 2];
+var rounds = [1, 10, 20, 69, 420];
 var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
 
 // The ball object (The cube that bounces back and forth)
@@ -63,11 +63,7 @@ var Game = {
         
         this.weedLeaf = document.getElementById("weedLeaf");
 
-        reggae = document.getElementById("badgerReggae");
-
-        background = document.getElementById("badger");
-
-		Pong.menu();
+		Pong.startMenu();
 		Pong.listen();
 	},
 
@@ -99,7 +95,50 @@ var Game = {
 		}, 3000);
 	},
 
-	menu: function () {
+	startMenu: function () {
+        reggae = document.getElementById("badgerReggae");
+        background = document.getElementById("badger");
+
+		// Draw all the Pong objects in their current state
+		Pong.draw();
+
+		// Change the canvas font size and color
+		this.context.font = '50px Courier New';
+		this.context.fillStyle = this.color;
+
+		// Draw the rectangle behind the 'Press any key to begin' text.
+		this.context.fillRect(
+			this.canvas.width / 2 - 600,
+			this.canvas.height / 2 - 120,
+			1200,
+			240
+		);
+
+		// Change the canvas color;
+		this.context.fillStyle = '#ffffff';
+
+		// Draw the 'press any key to begin' text
+		this.context.fillText('Badger challenges you to a weed off',
+            this.canvas.width / 2,
+            this.canvas.height / 2 - 50
+        );
+		this.context.fillText('You have to get 5 points to defeat him',
+			this.canvas.width / 2,
+			this.canvas.height / 2
+		);
+		this.context.fillText('(with weed) Press any key to begin',
+			this.canvas.width / 2,
+			this.canvas.height / 2 + 50
+		);
+	},
+    
+	level2Menu: function () {
+        reggae.pause();
+        reggae.currentTime = 0;
+        reggae = document.getElementById("spongebobReggae");
+        reggae.play();
+        background = document.getElementById("spongebob");
+        
 		// Draw all the Pong objects in their current state
 		Pong.draw();
 
@@ -119,7 +158,7 @@ var Game = {
 		this.context.fillStyle = '#ffffff';
 
 		// Draw the 'press any key to begin' text
-		this.context.fillText('Badger challenges you to a weed off',
+		this.context.fillText('Spongebob challenges you to a weed off',
             this.canvas.width / 2,
             this.canvas.height / 2 - 36
         );
@@ -131,6 +170,8 @@ var Game = {
 			this.canvas.width / 2,
 			this.canvas.height / 2 + 36
 		);
+
+        Pong.running = false;
 	},
 
 	// Update all objects (move the player, paddle, ball, increment the score, etc.)
@@ -216,6 +257,8 @@ var Game = {
 				this.paddle.speed += 1;
 				this.ball.speed += 1;
 				this.round += 1;
+
+                this.level2Menu();
 
 				// beep3.play();
 			}

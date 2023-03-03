@@ -63,6 +63,8 @@ var Game = {
         
         this.weedLeaf = document.getElementById("weedLeaf");
 
+        this.reggae = document.getElementById("reggae");
+
 		Pong.menu();
 		Pong.listen();
 	},
@@ -332,6 +334,7 @@ var Game = {
 			// Handle the 'Press any key to begin' function and start the game.
 			if (Pong.running === false) {
 				Pong.running = true;
+                reggae.play();
 				window.requestAnimationFrame(Pong.loop);
 			}
 
